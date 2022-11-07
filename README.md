@@ -10,5 +10,7 @@
 
 # todolist-fullstack
 A fullstack to-do list app that requires a sign in to use.
+
 Current Features: Mark completed and delete tasks
+
 Planned features: Multiple task lists and Task Priority
