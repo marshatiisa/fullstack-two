@@ -1,0 +1,17 @@
+body{
+  padding-top:80px;
+  word-wrap:break-word;
+}
+img{
+  height: 200px;
+}
+
+.check{
+  text-decoration: line-through;
+  font-style: italic;
+  background: gold;
+}
+
+.hide{
+  display: none;
+}
