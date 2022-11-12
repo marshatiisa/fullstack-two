@@ -1,5 +1,6 @@
 var completed = document.getElementsByClassName("completed");
 var trash = document.getElementsByClassName("fa-trash");
+var pinned = document.getElementsByClassName("fa-thumbtack")
 const item =document.querySelectorAll('.todoItem')
 
 Array.from(item).forEach(function(element) {
@@ -64,4 +65,22 @@ Array.from(trash).forEach(function(element) {
            window.location.reload()
         })
       });
+});
+
+Array.from(pinned).forEach(function(element) {
+  element.addEventListener('click', function(){
+    const name = this.parentNode.parentNode.childNodes[1].innerText
+    fetch('markPriority', {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'name': name.trim(),
+        
+      })
+    }).then(function (response) {
+       window.location.reload()
+    })
+  });
 });

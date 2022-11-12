@@ -31,10 +31,25 @@ module.exports = function(app, passport, db) {
 //changing collection name to todo or item
 //ive changes name to items
     app.post('/addTodo', (req, res) => {
-      db.collection('tocollection').save({thing: req.body.todoItem, completed:false}, (err, result) => {
+      db.collection('tocollection').save({thing: req.body.todoItem, completed:false, priority: false}, (err, result) => {
         if (err) return console.log(err)
         console.log('todo added')
         res.redirect('/profile')
+      })
+    })
+
+    app.put('/markPriority', (req, res) => {
+      db.collection('tocollection')
+      .findOneAndUpdate({thing: req.body.name}, {
+        $set: {
+         priority: true
+        }
+      }, {
+        sort: {_id: -1},
+        upsert: true
+      }, (err, result) => {
+        if (err) return res.send(err)
+        res.send(result)
       })
     })
 //mark complete and mark uncomplete
